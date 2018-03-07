@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>liste des programmes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngFor="let prog of allSchedules">
+    <ion-card-header>
+      {{ prog.nameschedule }}
+    </ion-card-header>
+    <ion-card-content>
+      <span>{{ prog.nametechschedule }} </span>
+      <span>{{ prog.categoryschedule }} </span>
+      <span>{{ prog.durschedule }} min </span>
+      <span>{{ prog.priorityschedule }} </span>
+      <span>{{ prog.remarkscedule }} </span>
+      <span>{{ prog.dateschedule }} </span>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

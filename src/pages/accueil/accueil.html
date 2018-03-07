@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Accueil</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  
+  <ion-list>
+    <ion-item ion-item *ngFor="let techno of technologiesData" (click)="itemSelected(techno)">
+      <span>
+        {{ techno.name }} {{ techno.category }}
+      </span>
+    </ion-item>
+  </ion-list>
+</ion-content>

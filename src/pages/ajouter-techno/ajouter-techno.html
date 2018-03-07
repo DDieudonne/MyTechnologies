@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-searchbar [(ngModel)]="searchTechInput" (ionInput)="searchTech($event)" (ionCancel)="onCancel($event)" placeholder="Rechercher..."
+      animated="true" type="text" debounce="250"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label floating placeholder="Nom technologie">Nom</ion-label>
+    <ion-input [(ngModel)]="techName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-select [(ngModel)]="categoryName" interface="action-sheet" placeholder="Catégorie" cancelText="Annuler">
+      <ion-option *ngFor="let category of categories" [value]="category.name">
+        {{category}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+  <button ion-button full type="button" (click)="addTechnology()">Ajouter</button>
+
+  <ion-list>
+    <ion-item *ngFor="let tech of technologiesData" (click)="moreDetails(tech)">
+      <ion-icon name="logo-android"></ion-icon> {{ tech.name }} {{ tech.categories }}
+    </ion-item>
+  </ion-list>
+
+</ion-content>
