@@ -12,7 +12,6 @@ import { ProgrammesList } from '../programmes-list/programmes-list';
 export class TechnologiesApp {
 
   ajouterTechnoRoot = AjouterTechno
-  SchudleRoot = Programmes
   ProgRoot = ProgrammesList
 
   constructor(public navCtrl: NavController) { }

@@ -14,6 +14,7 @@ import { DetailTechno } from '../pages/detail-techno/detail-techno';
 import { Programmes } from '../pages/programmes/programmes';
 import { ProgrammesList } from '../pages/programmes-list/programmes-list';
 import { TechnologiesApp } from '../pages/technologies-app/technologies-app';
+import { SerachProvider } from '../providers/serach/serach';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { TechnologiesApp } from '../pages/technologies-app/technologies-app';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    SQLite
+    SQLite,
+    SerachProvider
   ]
 })
 export class AppModule { }

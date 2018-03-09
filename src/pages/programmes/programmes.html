@@ -1,5 +1,10 @@
 <ion-header>
   <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>
       Programmes
     </ion-title>
@@ -7,46 +12,47 @@
 </ion-header>
 
 <ion-content>
-  <form #scheduleForm="ngForm" (ngSubmit)="createSchedule(scheduleForm)">
-    <ion-list>
-      <ion-item>
-        <ion-label floating>Nom du programme</ion-label>
-        <ion-input type="text" ngModel name="nameSchedule"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Date</ion-label>
-        <ion-datetime doneText="OK" cancelText="Annuler" displayFormat="MMM DD, YYYY" ngModel name="dateSchedule"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Nom de la technologie</ion-label>
-        <ion-select ngModel name="nameScheduleTech" interface="action-sheet">
-          <ion-option *ngFor="let tech of Technologies">{{tech.name}}</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>catégorie</ion-label>
-        <ion-select ngModel name="nameScheduleCat" interface="action-sheet">
-          <ion-option *ngFor="let category of categories">{{category}}</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>priorité</ion-label>
-        <ion-select ngModel name="nameSchedulePrio" interface="action-sheet">
-          <ion-option *ngFor="let priority of priorities">{{priority}}</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>remarques</ion-label>
-        <ion-textarea ngModel name="remarkSchedule"></ion-textarea>
-      </ion-item>
-      <ion-item>
-        <ion-label>durée (en minutes) {{ valueRange }} minutes</ion-label>
-        <ion-range ngModel name="durationSchedule" min="0" max="480" step="15" (ionChange)="changeRange($event)">
-          <ion-label range-left>0</ion-label>
-          <ion-label range-right>480</ion-label>
-        </ion-range>
-      </ion-item>
-    </ion-list>
-    <button ion-button [disabled]="submited" type="submit">créer</button>
-  </form>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Nom du programme</ion-label>
+      <ion-input type="text" [(ngModel)]="nameSchedule"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime doneText="OK" cancelText="Annuler" displayFormat="MMM DD,YYYY" [(ngModel)]="dateSchedule"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Nom de la technologie</ion-label>
+      <ion-select [(ngModel)]="nameScheduleTech" interface="action-sheet" okText="OK" cancelText="Annuler">
+        <ion-option *ngFor="let tech of Technologies">{{tech.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>catégorie</ion-label>
+      <ion-select [(ngModel)]="nameScheduleCat" interface="action-sheet" (ionChange)="selectedCat($event)"  okText="OK" cancelText="Annuler">
+        <ion-option *ngFor="let category of categories">{{category}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="othersCat">
+      <ion-input type="text" placeholder="écrivez une autre catégorie" [(ngModel)]="nameScheduleCatOther"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>priorité</ion-label>
+      <ion-select [(ngModel)]="nameSchedulePrio" interface="action-sheet"  okText="OK" cancelText="Annuler">
+        <ion-option *ngFor="let priority of priorities">{{priority}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>remarques</ion-label>
+      <ion-textarea [(ngModel)]="remarkSchedule"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>durée (en minutes) {{ valueRange }} minutes</ion-label>
+      <ion-range [(ngModel)]="durationSchedule" min="0" max="480" step="15" (ionChange)="changeRange($event)">
+        <ion-label range-left>0</ion-label>
+        <ion-label range-right>480</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+  <button ion-button block [disabled]="submited" (click)="addSchedule()" type="submit">créer</button>
 </ion-content>

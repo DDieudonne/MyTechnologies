@@ -1,27 +1,43 @@
-import { Component } from '@angular/core';
-import { ToastController, IonicPage } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { ToastController, IonicPage, ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 
 @Component({
   selector: 'page-programmes',
   templateUrl: 'programmes.html',
 })
-export class Programmes {
+export class Programmes implements OnInit {
 
+  private nameSchedule: string;
+  private nameScheduleTech: string;
+  private nameScheduleCat: string;
+  private nameScheduleCatOther: string;
+  private nameSchedulePrio: string;
+  private remarkSchedule: string;
+  private durationSchedule: number;
   private submited: boolean = true;
-
   private valueRange;
-  private categories: string[];
-  private priorities: string[];
-  private Technologies;
+  private categories: string[] = [
+    "Frontend", "Backend", "Hybride", "Autre"
+  ]
+  private priorities: string[] = [
+    "Haute", "Moyenne", "Basse"
+  ]
+  private Technologies: any[] = [];
+  private othersCat: boolean = false;
 
   constructor(
     private toastCtrl: ToastController,
-    private loadCtrl: LoadingController,) {
+    private loadCtrl: LoadingController,
+    private viewCtrl: ViewController) {
   }
 
   ngOnChanges() {
     this.changeRange(event);
+  }
+
+  ngOnInit() {
+    this.selectedCat(event);
   }
 
   changeRange(e) {
@@ -29,11 +45,40 @@ export class Programmes {
     this.submited = false;
   }
 
-  ionViewWillEnter() {
+  ionViewWillEnter() { }
+
+  selectedCat(e) {
+    if (this.nameScheduleCat == "Autre") {
+      this.othersCat = true;
+    } else {
+      this.othersCat = false;
+    }
   }
 
-  getTechnologie() {
-   
+  addSchedule() {
+    if (this.nameScheduleCatOther != null) {
+      this.viewCtrl.dismiss({
+        nameSchedule: this.nameSchedule,
+        nameScheduleTech: this.nameScheduleTech,
+        nameScheduleCatOther: this.nameScheduleCatOther,
+        nameSchedulePrio: this.nameSchedulePrio,
+        remarkSchedule: this.remarkSchedule,
+        durationSchedule: this.durationSchedule
+      });
+    } else {
+      this.viewCtrl.dismiss({
+        nameSchedule: this.nameSchedule,
+        nameScheduleTech: this.nameScheduleTech,
+        nameScheduleCat: this.nameScheduleCat,
+        nameSchedulePrio: this.nameSchedulePrio,
+        remarkSchedule: this.remarkSchedule,
+        durationSchedule: this.durationSchedule
+      });
+    }
+  }
+
+  back() {
+    this.viewCtrl.dismiss();
   }
 
 }
