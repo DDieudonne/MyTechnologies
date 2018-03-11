@@ -13,7 +13,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-card *ngFor="let sched of allSchedules" (click)="moreDetails(sched)">
+    <ion-card *ngFor="let sched of allSchedules">
       <ion-card-header style="color:#fff;">
         {{ sched?.nameSchedule }}
       </ion-card-header>

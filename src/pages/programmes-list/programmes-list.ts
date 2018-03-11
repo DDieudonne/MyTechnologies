@@ -174,10 +174,6 @@ export class ProgrammesList {
     });
   }
 
-  moreDetails(sched: any) {
-    this.navCtrl.push(SchedDetailsPage, { sched: sched })
-  }
-
   onCancel(event) {
     this.getData();
   }
