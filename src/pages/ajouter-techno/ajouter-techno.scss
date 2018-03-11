@@ -1,6 +1,6 @@
 page-ajouter-techno {
     .dataIcon{
-        margin-top: 31%;
+        margin-top: 35%;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -8,10 +8,9 @@ page-ajouter-techno {
         color: rgba(0, 0, 0, 0.664);  
         .add{
             font-size: 30px;
-        color: rgba(0, 0, 0, 0.664);  
-        margin-top: 4%;            
+        color: rgba(0, 0, 0, 0.664);              
         }      
-        i{
+        ion-icon{
             font-size: 150px;
             color: rgba(0, 0, 0, 0.068);
         }

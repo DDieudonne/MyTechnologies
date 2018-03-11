@@ -1,12 +1,17 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>detailTechno</ion-title>
+    <ion-title>{{ techno.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-list-header>
+      {{techno.name}}
+    </ion-list-header>
+    <ion-item>{{techno.categories}}</ion-item>
+  </ion-list>
 </ion-content>

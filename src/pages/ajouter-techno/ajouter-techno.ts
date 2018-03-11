@@ -1,8 +1,7 @@
-import { Component, OnChanges } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
-import { Accueil } from "../accueil/accueil";
+import { Component } from '@angular/core';
+import { NavController, LoadingController, ToastController, ModalController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-import { SerachProvider } from '../../providers/serach/serach';
+import { DetailTechno } from '../detail-techno/detail-techno';
 
 const DATABASE_FILE_NAME: string = 'data.db';
 @Component({
@@ -17,18 +16,18 @@ export class AjouterTechno {
     "Front", "Backend", "Hybride", "Autres"
   ];
 
+  private searchTerm: string = '';
+
   private techName: string;
   private categoryName: string;
   private technologiesData: any[] = [];
-  private searchTerm: string = '';
 
   constructor(
     private navCtrl: NavController,
-    private navParams: NavParams,
     private sqlite: SQLite,
     private loadingCtrl: LoadingController,
-    private _searchBar: SerachProvider,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private modalCtrl: ModalController
   ) { }
 
   ionViewWillEnter() {
@@ -42,6 +41,9 @@ export class AjouterTechno {
     }, 3000);
   }
 
+  ionViewDidLoad() {
+    this.searchTech(event);
+  }
   private createDataBaseFile(): void {
     this.sqlite.create({
       name: DATABASE_FILE_NAME,
@@ -105,31 +107,28 @@ export class AjouterTechno {
   }
 
   searchTech(event) {
-    this.technologiesData = this.filterItems(event.target.value);
-    if (event.data == null) {
-      let loading = this.loadingCtrl.create({
-        content: 'Veuillez patienter svp...'
-      });
-      loading.present();
-      setTimeout(() => {
-        this.getData();
-        loading.dismiss();
-      }, 3000);
+    if (event == undefined) { this.getData(); }
+    else if (event.data == null) {
+      this.getData();
+    } else {
+      this.technologiesData = this.filterItems(event.target.value);
     }
   }
 
   filterItems(searchTerm) {
-    return this.technologiesData.filter((item) => {
-      return item.name.toLowerCase().indexOf(searchTerm.toLowerCase().trim()) > -1;
+    return this.technologiesData.filter((tech) => {
+      return tech.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
     });
 
   }
 
-  onCancel(event){
+  onCancel(event) {
     this.getData();
   }
 
-  moreDetails(tech) { }
+  moreDetails(tech: any) {
+    this.modalCtrl.create(DetailTechno, { tech: tech });
+  }
 
 
 }

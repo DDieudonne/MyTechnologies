@@ -9,11 +9,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DetailTechno {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  private techno;
 
-  ionViewWillLoad() {
-    console.log('ionViewDidLoad DetailTechnoPage', this.navParams.get('Technologies'));
+  constructor(
+    private navCtrl: NavController,
+    private navParams: NavParams
+  ) { }
+
+  ionViewWillEnter() {
+    this.techno = this.navParams.get('tech')
   }
 
 }

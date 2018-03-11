@@ -24,12 +24,12 @@
     <ion-item>
       <ion-label floating>Nom de la technologie</ion-label>
       <ion-select [(ngModel)]="nameScheduleTech" interface="action-sheet" okText="OK" cancelText="Annuler">
-        <ion-option *ngFor="let tech of Technologies">{{tech.name}}</ion-option>
+        <ion-option *ngFor="let tech of Technologies">{{tech}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label floating>catégorie</ion-label>
-      <ion-select [(ngModel)]="nameScheduleCat" interface="action-sheet" (ionChange)="selectedCat($event)"  okText="OK" cancelText="Annuler">
+      <ion-select [(ngModel)]="nameScheduleCat" interface="action-sheet" (ionChange)="selectedCat($event)" okText="OK" cancelText="Annuler">
         <ion-option *ngFor="let category of categories">{{category}}</ion-option>
       </ion-select>
     </ion-item>
@@ -38,7 +38,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>priorité</ion-label>
-      <ion-select [(ngModel)]="nameSchedulePrio" interface="action-sheet"  okText="OK" cancelText="Annuler">
+      <ion-select [(ngModel)]="nameSchedulePrio" interface="action-sheet" okText="OK" cancelText="Annuler">
         <ion-option *ngFor="let priority of priorities">{{priority}}</ion-option>
       </ion-select>
     </ion-item>

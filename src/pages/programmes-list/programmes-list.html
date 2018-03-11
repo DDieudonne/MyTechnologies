@@ -1,36 +1,49 @@
 <ion-header>
   <ion-navbar color="light">
-    <ion-title>liste des programmes</ion-title>
+    <ion-searchbar (ionInput)="searchTech($event)" (ionCancel)="onCancel($event)" placeholder="Rechercher..." animated="true"
+      type="text" debounce="250">
+    </ion-searchbar>
     <ion-buttons end>
       <button ion-button icon-only (click)="addSchedule()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content>
-  <ion-list *ngFor="let sched of allSchedules" (click)="moreDetails(sched)">
-    <ion-list-header color="danger">
-      Priorité Haute
-    </ion-list-header>
-    <ion-item>Terminator II</ion-item>
-    <!-- <ion-item>The Empire Strikes Back</ion-item>
-    <ion-item>Blade Runner</ion-item>
-    <ion-list-header color="soso">
-      Priorité Moyenne
-    </ion-list-header>
-    <ion-item>Terminator II</ion-item>
-    <ion-item>The Empire Strikes Back</ion-item>
-    <ion-item>Blade Runner</ion-item>
-    <ion-list-header color="primary">
-      Priorité Basse
-    </ion-list-header>
-    <ion-item>Terminator II</ion-item>
-    <ion-item>The Empire Strikes Back</ion-item>
-    <ion-item>Blade Runner</ion-item> -->
+  <ion-list>
+    <ion-card *ngFor="let sched of allSchedules" (click)="moreDetails(sched)">
+      <ion-card-header style="color:#fff;">
+        {{ sched?.nameSchedule }}
+      </ion-card-header>
+      <ion-card-content>
+        <span>
+          <ion-icon name="alert"></ion-icon>
+          Priorité {{sched?.nameSchedulePrio}}
+        </span>
+        <span>
+          <ion-icon name="analytics"></ion-icon>
+          {{ sched?.nameScheduleTech }}
+        </span>
+        <span>
+          <ion-icon name="bookmark"></ion-icon>
+          {{ sched?.nameScheduleCat }}
+        </span>
+        <span>
+          <ion-icon name="time"></ion-icon>
+          {{ sched?.durationSchedule }} Min
+        </span>
+        <span>
+          <ion-icon name="text"></ion-icon>
+          {{ sched?.remarkSchedule }}
+        </span>
+        <span>
+          <ion-icon name="calendar"></ion-icon>
+          {{ sched?.dateSchedule }}
+        </span>
+      </ion-card-content>
+    </ion-card>
   </ion-list>
 
   <div class="dataIcon" *ngIf="allSchedules.length == 0">

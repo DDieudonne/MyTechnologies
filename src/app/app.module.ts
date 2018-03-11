@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { HttpModule } from '@angular/http';
 import { SQLite } from '@ionic-native/sqlite';
 import { Accueil } from '../pages/accueil/accueil';
@@ -15,6 +15,7 @@ import { Programmes } from '../pages/programmes/programmes';
 import { ProgrammesList } from '../pages/programmes-list/programmes-list';
 import { TechnologiesApp } from '../pages/technologies-app/technologies-app';
 import { SerachProvider } from '../providers/serach/serach';
+import { SchedDetailsPage } from '../pages/sched-details/sched-details';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SerachProvider } from '../providers/serach/serach';
     DetailTechno,
     Programmes,
     ProgrammesList,
-    TechnologiesApp
+    TechnologiesApp,
+    SchedDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { SerachProvider } from '../providers/serach/serach';
     DetailTechno,
     Programmes,
     ProgrammesList,
-    TechnologiesApp
+    TechnologiesApp,
+    SchedDetailsPage
   ],
   providers: [
     StatusBar,

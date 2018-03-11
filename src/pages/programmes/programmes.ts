@@ -9,7 +9,8 @@ import { LoadingController } from 'ionic-angular/components/loading/loading-cont
 export class Programmes implements OnInit {
 
   private nameSchedule: string;
-  private nameScheduleTech: string;
+  private dateSchedule: string;
+  private nameScheduleTech: string = "Angular"
   private nameScheduleCat: string;
   private nameScheduleCatOther: string;
   private nameSchedulePrio: string;
@@ -23,7 +24,9 @@ export class Programmes implements OnInit {
   private priorities: string[] = [
     "Haute", "Moyenne", "Basse"
   ]
-  private Technologies: any[] = [];
+  private Technologies: any[] = [
+    "Angular", "Nodejs", "Java", "Ionic", "ReactJs", "SQL", "MongoDB", "PWA", "Android", "Ios"
+  ];
   private othersCat: boolean = false;
 
   constructor(
@@ -59,6 +62,7 @@ export class Programmes implements OnInit {
     if (this.nameScheduleCatOther != null) {
       this.viewCtrl.dismiss({
         nameSchedule: this.nameSchedule,
+        dateSchedule: this.dateSchedule,
         nameScheduleTech: this.nameScheduleTech,
         nameScheduleCatOther: this.nameScheduleCatOther,
         nameSchedulePrio: this.nameSchedulePrio,
@@ -68,6 +72,7 @@ export class Programmes implements OnInit {
     } else {
       this.viewCtrl.dismiss({
         nameSchedule: this.nameSchedule,
+        dateSchedule: this.dateSchedule,
         nameScheduleTech: this.nameScheduleTech,
         nameScheduleCat: this.nameScheduleCat,
         nameSchedulePrio: this.nameSchedulePrio,

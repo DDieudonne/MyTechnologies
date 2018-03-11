@@ -1,7 +1,17 @@
+$primary: #488aff;
+
 page-programmes-list {
+
+    ion-icon{
+        color: $primary;
+    }
+    
     ion-card-content{
         display: flex;
         flex-direction: column;
+    }
+    ion-card-header{
+        background-color: $primary;
     }
     .dataIcon{
         margin-top: 35%;

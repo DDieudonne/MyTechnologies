@@ -20,13 +20,13 @@
   <button ion-button full type="button" (click)="addTechnology()">Ajouter</button>
 
   <ion-list>
-    <ion-item *ngFor="let tech of technologiesData" (click)="moreDetails(tech)">
+    <ion-item *ngFor="let tech of technologiesData">
       <ion-icon name="logo-android"></ion-icon> {{ tech.name }} {{ tech.categories }}
     </ion-item>
   </ion-list>
 
   <div class="dataIcon" *ngIf="technologiesData.length == 0">
-    <i class="fa fa-database" aria-hidden="true"></i>
+    <ion-icon name="analytics"></ion-icon>
     <ion-icon class="add" name="add-circle"></ion-icon>
     <span>Ajoutez une nouvelle technologie</span>
   </div>
